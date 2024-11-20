@@ -60,7 +60,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: "module",
     tsconfigRootDir: __dirname,
-    project: ["./tsconfig.json"],
+    project: ["./tsconfig.json", "./tsconfig.app.json", "./tsconfig.node.json"],
   },
   plugins: ["react-refresh", "@typescript-eslint"],
   ignorePatterns: [".eslintrc.*", "vite.config.*"],
