@@ -20,10 +20,10 @@ check_jq_installed() {
 install_linter_packages() {
   if command -v pnpm &> /dev/null; then
     echo "Installing packages with pnpm..."
-    pnpm add eslint@^8.57.0 eslint-config-airbnb@^19.0.4 eslint-config-airbnb-typescript@^18.0.0 eslint-config-prettier@^9.1.0 eslint-plugin-import@^2.29.1 eslint-plugin-jsx-a11y@^6.9.0 eslint-plugin-prettier@^5.2.1 eslint-plugin-react@^7.35.0 eslint-plugin-react-hooks@^4.6.2 eslint-plugin-react-refresh@^0.4.9 -D
+    pnpm add eslint@^8.57.0 eslint-config-airbnb@^19.0.4 eslint-import-resolver-alias@^1.1.2 eslint-config-airbnb-typescript@^18.0.0 eslint-config-prettier@^9.1.0 eslint-plugin-import@^2.29.1 eslint-plugin-jsx-a11y@^6.9.0 eslint-plugin-prettier@^5.2.1 eslint-plugin-react@^7.35.0 eslint-plugin-react-hooks@^4.6.2 eslint-plugin-react-refresh@^0.4.9 -D
   elif command -v npm &> /dev/null; then
     echo "Installing packages with npm..."
-    npm install eslint@^8.57.0 eslint-config-airbnb@^19.0.4 eslint-config-airbnb-typescript@^18.0.0 eslint-config-prettier@^9.1.0 eslint-plugin-import@^2.29.1 eslint-plugin-jsx-a11y@^6.9.0 eslint-plugin-prettier@^5.2.1 eslint-plugin-react@^7.35.0 eslint-plugin-react-hooks@^4.6.2 eslint-plugin-react-refresh@^0.4.9 -D
+    npm install eslint@^8.57.0 eslint-config-airbnb@^19.0.4 eslint-import-resolver-alias@^1.1.2 eslint-config-airbnb-typescript@^18.0.0 eslint-config-prettier@^9.1.0 eslint-plugin-import@^2.29.1 eslint-plugin-jsx-a11y@^6.9.0 eslint-plugin-prettier@^5.2.1 eslint-plugin-react@^7.35.0 eslint-plugin-react-hooks@^4.6.2 eslint-plugin-react-refresh@^0.4.9 -D
   else
     echo "Error: Neither npm nor pnpm is installed."
     exit 1
@@ -54,6 +54,16 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [
+          ["@", "./src"], 
+        ],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: { jsx: true },
